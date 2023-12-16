@@ -16,9 +16,7 @@ export default function Textarea(props) {
     };
 
     const handleCopyToClipBoard = () => {
-        let copiedText = document.getElementById('box');
-        copiedText.select();
-        navigator.clipboard.writeText(copiedText.value);
+        navigator.clipboard.writeText(text);
     };
 
     const removeExtraSpace = () => {
@@ -38,25 +36,25 @@ export default function Textarea(props) {
                     onChange={onChangeEvent}
                 ></textarea>
 
-                <button className="btn btn-primary me-3" onClick={changeToUppercase}>
+                <button className="btn btn-primary me-3" disabled={text === ''} onClick={changeToUppercase}>
                     convert To Uppercase
                 </button>
 
-                <button className="btn btn-primary me-3" onClick={changeToLowercase}>
+                <button className="btn btn-primary me-3" disabled={text === ''} onClick={changeToLowercase}>
                     convert To Lowercases
                 </button>
 
-                <button className="btn btn-primary me-3" onClick={handleCopyToClipBoard}>
+                <button className="btn btn-primary me-3" disabled={text === ''} onClick={handleCopyToClipBoard}>
                     copy Text to ClipBoard
                 </button>
-                <button className="btn btn-primary" onClick={removeExtraSpace}>
+                <button className="btn btn-primary" disabled={text === ''} onClick={removeExtraSpace}>
                     remove Extra Space
                 </button>
 
                 <div className="container my-4">
                     <h2>total word summary</h2>
                     <p>
-                        {text.split(' ').filter((e) => e !== '').length} words and{' '}
+                        {text.split(/\s+/).filter((e) => e !== '').length} words and{' '}
                         {text.length} characters
                     </p>
                 </div>
